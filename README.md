@@ -68,12 +68,12 @@ python main.py
 
 
 
-## For End Users(System sercice setup)
+## For End Users(System service setup)
 
 1. 📥 Install the Software
-sudo git clone https://github.com/xxDURGEXxx/Stats-Oled-Raspberry-Pi-5.git /usr/local/bin/stats_oled
-cd /usr/local/bin/stats_oled
-python3 -m venv enviroment --system-site-packages
+sudo git clone https://github.com/xxDURGEXxx/Stats-Oled-Raspberry-Pi-5.git /usr/local/bin/stats_oled  
+cd /usr/local/bin/stats_oled  
+python3 -m venv enviroment --system-site-packages  
 source enviroment/bin/activate
 pip install -r requirements.txt
 deactivate
