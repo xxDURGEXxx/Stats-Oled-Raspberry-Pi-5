@@ -107,14 +107,45 @@ sudo systemctl start oled-stats
 
 
 ## How to change screen toggle
-The function is located on main.py only.  
-Comment button_listener() and also the Thread bellow it   
-Create a function  
-When you want to toggle change, call toogle_ever_event() . This function only takes predefined constants  
- -SINGLE_CLICK  --> switch to next [ screen / options ]  
- -LONG_PRESS  --> enter into selection page or select options  
- -DOUBLE_CLICK --> go back  
-Copy paste the previously comment Thread and change the function name to new one (what you specified)  
+
+You can replace the default button-based toggle logic with your own input system — such as keyboard input, web triggers, or GPIO alternatives.
+
+### 🧩 Where to Modify
+
+In `main.py`, find the following:
+
+- The `button_listener()` function  
+- The thread that starts it (e.g., `Thread(target=button_listener, ...)`)
+
+### 🔄 Steps to Replace
+
+1. **Disable the default handler**  
+   Comment out or remove the following:
+   ```python
+   def button_listener():
+       ...
+    botton_listner_thread = threading.Thread(target=button_listener, daemon=True)
+    botton_listner_thread.start()
+    ```
+2. Write your own input function  
+   Create a custom function like:
+   ```python
+   def custom_toggle():
+    # Example input logic here
+    toggle_user_event(CONSTANTS.SINGLE_CLICK)
+   ```
+
+3. Start the new input handler
+    ```python 
+    customthread=Thread(target=custom_toggle, daemon=True)
+    customthread.start()
+    ```
+
+Supported Navigation Constants
+Use toggle_user_event() with any of the following:
+- SINGLE_CLICK → Next screen or option
+- LONG_PRESS → Enter/select
+- DOUBLE_CLICK → Go back
 
 
 ## 📜 License
