@@ -22,7 +22,6 @@ A lightweight, customizable stats display built in Python using `luma.oled` and 
 <img src="images/IMG_3149.HEIC" width="300px">
 <img src="images/IMG_3150.HEIC" width="300px">
 <img src="images/IMG_3151.jpg" width="300px">
-<img src="images/IMG_3152.HEIC" width="300px">
 <img src="images/IMG_3153.HEIC" width="300px">
 
 
@@ -49,11 +48,16 @@ BELLOW ARE FOR BUTTON CLICK TOGGLE
 
 
 ## RC Circuit For Button toggle
-<img src="images/rc_circuit.png" width="400px">
+<img src="images/rc_circuit.png" width="400px"><img src="images/IMG_3152.HEIC" width="300px">
 
 You could get around with simple button circuit but the signals wont be clean due to button bouncing issue.  
 To know about the button bouncing and rc circuit check on https://youtu.be/tI6B6BRKU5k?si=kr0qGCNcuo0YyN5I
 
+
+## Optimal wiring diagram
+<img src="images/pi_5_wiring.png" width="400px">
+
+This diagram represent full wiring setup. For Pi 5 can use 5 pin dupont housing for more clean and minimal setup.
 
 
 ## GETTING STARTED
