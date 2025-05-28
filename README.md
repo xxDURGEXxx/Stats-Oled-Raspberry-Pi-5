@@ -48,10 +48,12 @@ You could go with simpler circuit with just button and wires but this circuit en
 
 ### 🔍 libgpiod V2
 
------Check version-----------
+CHECK VERSION
+<pre>```bash
 gpiodetect --version
+</pre>
 
------------Upgrade libgpiod version -------------
+Upgrade libgpiod version
 - visit := https://libgpiod.readthedocs.io/en/latest/
 - make sure to select version 2+
 
@@ -59,11 +61,17 @@ gpiodetect --version
 ## For Development
 <pre>```bash
 git clone https://github.com/xxDURGEXxx/Stats-Oled-Raspberry-Pi-5.git
+
 cd Stats-Oled-Raspberry-Pi-5
+
 python3 -m venv enviroment --system-site-packages
+
 source enviroment/bin/activate
+
 pip install -r requirements.txt
+
 cp config/config.ini.example config/config.ini
+
 python main.py
 </pre>
 
