@@ -11,11 +11,21 @@ A lightweight, customizable stats display built in Python using `luma.oled` and 
 - 🖥️ Multiple screens: Home (main and default), Options (hardware selection), Network
 - 🔘 Button navigation (click / long press / double click)
 - 💤 Idle timeout with screen saver (prevent screen burning)
+- 👀 Cool looking screensaver animation [Robo Eyes]. Shoutout to [sofianhw/RoboEyes](https://github.com/sofianhw/RoboEyes) for the screen saver code used and adapted here!
 - 🛠️ Configurable via `config.ini`
 - 🔄 Systemd service for auto-start
 - 👨‍💻 Developer-friendly structure with virtualenv support
 
 ---
+
+## Preview
+<img src="images/IMG_3149.HEIC" width="500px">
+<img src="images/IMG_3150.HEIC" width="500px">
+<img src="images/IMG_3151.HEIC" width="500px">
+<img src="images/IMG_3152.HEIC" width="500px">
+<img src="images/IMG_3153.HEIC" width="500px">
+
+
 
 ## 📦 Dependencies
 
@@ -26,7 +36,7 @@ A lightweight, customizable stats display built in Python using `luma.oled` and 
 >    
 > It's used for precise button event handling (including timeouts for double-click support).
 >  
-> DONT PANIC!! ⚠️ You can eleminate / skip  this by either changing the code to libgpiod V1 or if you chose some other way to toggle the screen. Truest me its very simple -> [How to change screen toggle function](#How-to-change-screen-toggle)
+> DONT PANIC!! ⚠️ You can eleminate / skip  this by either changing the code to libgpiod V1 or if you chose some other way to toggle the screen. Trust me its very simple -> [How to change screen toggle function](#How-to-change-screen-toggle)
 
 
 ## Hardware Requirements
@@ -95,8 +105,8 @@ sudo nano /etc/stats_oled/config.ini  (if there is any changes you want to make)
 
 # 3. 🔁 Create systemd Service
 sudo cp systemd/oled-stats.service /etc/systemd/system/oled-stats.service
-Make sure this matches your Python path (default):
-ExecStart=/usr/local/bin/stats_oled/enviroment/bin/python /usr/local/bin/stats_oled/main.py
+#Make sure this matches your Python path (default):
+#   -ExecStart=/usr/local/bin/stats_oled/enviroment/bin/python /usr/local/bin/stats_oled/main.py
 
 # 4.  Enable run on boot and start
 sudo systemctl daemon-reexec
