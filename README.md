@@ -115,3 +115,12 @@ When you want to toggle change, call toogle_ever_event() . This function only ta
  -LONG_PRESS  --> enter into selection page or select options  
  -DOUBLE_CLICK --> go back  
 Copy paste the previously comment Thread and change the function name to new one (what you specified)  
+
+
+## 📜 License
+
+MIT License — see `LICENSE` file for details.
+
+## 🤝 Contributions
+
+Issues and PRs are welcome! Help improve the project or share your mods.
