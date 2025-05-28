@@ -30,12 +30,12 @@ A lightweight, customizable stats display built in Python using `luma.oled` and 
 
 
 ## Hardware Requirements
-> i2c display ( sh1106 or other 1.3 inch oled display) .. please check luma.oled for supported i2c display  
-> 26 awg wires , dupont housing and pins  
-> BELLOW ARE FOR BUTTON CLICK TOGGLE  
-> Capasitor (0.1u)  
-> Resistor ( 10k ohms )  
-> Tactile Button 
+- i2c display ( sh1106 or other 1.3 inch oled display) .. please check luma.oled for supported i2c display  
+- 26 awg wires , dupont housing and pins  
+BELLOW ARE FOR BUTTON CLICK TOGGLE  
+- Capasitor (0.1u)  
+- Resistor ( 10k ohms )  
+- Tactile Button 
 
 
 ## RC Circuit For Button toggle
