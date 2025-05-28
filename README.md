@@ -35,16 +35,6 @@ A lightweight, customizable stats display built in Python using `luma.oled` and 
 > Tactile Button 
 
 
-## How to change screen toggle
-> The function is located on main.py only.
-> Comment button_listener() and also the Thread bellow it 
-> Create a function
-> When you want to toggle change, call toogle_ever_event() . This function only takes predefined constants
->  -SINGLE_CLICK  --> switch to next [ screen / options ]
->  -LONG_PRESS  --> enter into selection page or select options
->  -DOUBLE_CLICK --> go back
-> Copy paste the previously comment Thread and change the function name to new one (what you specified)
-
 ## RC Circuit For Button toggle
 <img src="images/rc_circuit.png" width="400px">
 
@@ -54,19 +44,19 @@ You could go with simpler circuit with just button and wires but this circuit en
 
 
 
-GETTING STARTED
+## GETTING STARTED
 
-### 🔍 Check libgpiod version
-```bash
+### 🔍 libgpiod V2
+
+-----Check version-----------
 gpiodetect --version
 
-
-Upgrade libgpiod version 
+-----------Upgrade libgpiod version -------------
 - visit := https://libgpiod.readthedocs.io/en/latest/
 - make sure to select version 2+
 
 
-For Development
+## For Development
 
 git clone https://github.com/xxDURGEXxx/Stats-Oled-Raspberry-Pi-5.git
 cd Stats-Oled-Raspberry-Pi-5
@@ -78,7 +68,7 @@ python main.py
 
 
 
-For End Users(System sercice setup)
+## For End Users(System sercice setup)
 
 1. 📥 Install the Software
 sudo git clone https://github.com/xxDURGEXxx/Stats-Oled-Raspberry-Pi-5.git /usr/local/bin/stats_oled
@@ -102,3 +92,16 @@ ExecStart=/usr/local/bin/stats_oled/enviroment/bin/python /usr/local/bin/stats_o
 sudo systemctl daemon-reexec
 sudo systemctl enable oled-stats
 sudo systemctl start oled-stats
+
+
+
+
+## How to change screen toggle
+> The function is located on main.py only.
+> Comment button_listener() and also the Thread bellow it 
+> Create a function
+> When you want to toggle change, call toogle_ever_event() . This function only takes predefined constants
+>  -SINGLE_CLICK  --> switch to next [ screen / options ]
+>  -LONG_PRESS  --> enter into selection page or select options
+>  -DOUBLE_CLICK --> go back
+> Copy paste the previously comment Thread and change the function name to new one (what you specified)
