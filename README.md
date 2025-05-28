@@ -22,8 +22,10 @@ A lightweight, customizable stats display built in Python using `luma.oled` and 
 - Python 3
 
 - [`libgpiod v2`](https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git)  
-> ⚠️ This project **requires `libgpiod v2`**, regardless of Raspberry Pi model    
-> It's used for precise button event handling (including timeouts for double-click support)  
+> ⚠️ This project **requires `libgpiod v2`**, regardless of Raspberry Pi model.
+>    
+> It's used for precise button event handling (including timeouts for double-click support).
+>  
 > DONT PANIC!! ⚠️ You can eleminate / skip  this by either changing the code to libgpiod V1 or if you chose some other way to toggle the screen. Truest me its very simple -> [How to change screen toggle function](#How-to-change-screen-toggle)
 
 
