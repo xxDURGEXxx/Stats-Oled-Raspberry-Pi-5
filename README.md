@@ -107,11 +107,11 @@ sudo systemctl start oled-stats
 
 
 ## How to change screen toggle
-> The function is located on main.py only.  
-> Comment button_listener() and also the Thread bellow it   
-> Create a function  
-> When you want to toggle change, call toogle_ever_event() . This function only takes predefined constants  
->  -SINGLE_CLICK  --> switch to next [ screen / options ]  
->  -LONG_PRESS  --> enter into selection page or select options  
->  -DOUBLE_CLICK --> go back  
-> Copy paste the previously comment Thread and change the function name to new one (what you specified)  
+The function is located on main.py only.  
+Comment button_listener() and also the Thread bellow it   
+Create a function  
+When you want to toggle change, call toogle_ever_event() . This function only takes predefined constants  
+ -SINGLE_CLICK  --> switch to next [ screen / options ]  
+ -LONG_PRESS  --> enter into selection page or select options  
+ -DOUBLE_CLICK --> go back  
+Copy paste the previously comment Thread and change the function name to new one (what you specified)  
