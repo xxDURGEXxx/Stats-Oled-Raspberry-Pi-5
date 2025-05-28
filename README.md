@@ -77,8 +77,8 @@ python main.py
 
 
 ## For End Users(System service setup)
-
-1. 📥 Install the Software
+<pre>```bash
+# 1. 📥 Install the Software
 sudo git clone https://github.com/xxDURGEXxx/Stats-Oled-Raspberry-Pi-5.git /usr/local/bin/stats_oled  
 cd /usr/local/bin/stats_oled  
 python3 -m venv enviroment --system-site-packages  
@@ -86,21 +86,21 @@ source enviroment/bin/activate
 pip install -r requirements.txt
 deactivate
 
-2. ⚙️ Configure
+# 2. ⚙️ Configure
 sudo mkdir -p /etc/stats_oled
 sudo cp config/config.ini.example /etc/stats_oled/config.ini
 sudo nano /etc/stats_oled/config.ini  (if there is any changes you want to make)
 
-3. 🔁 Create systemd Service
+# 3. 🔁 Create systemd Service
 sudo cp systemd/oled-stats.service /etc/systemd/system/oled-stats.service
 Make sure this matches your Python path (default):
 ExecStart=/usr/local/bin/stats_oled/enviroment/bin/python /usr/local/bin/stats_oled/main.py
 
-4.  Enable run on boot and start
+# 4.  Enable run on boot and start
 sudo systemctl daemon-reexec
 sudo systemctl enable oled-stats
 sudo systemctl start oled-stats
-
+</pre>
 
 
 
