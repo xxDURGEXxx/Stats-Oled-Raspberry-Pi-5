@@ -19,8 +19,9 @@ A lightweight, customizable stats display built in Python using `luma.oled` and 
 
 ## 📦 Dependencies
 
-- Python 3.7+
-ONLY IMPLIES IF YOU ARE USING BUTTON TO NAVIGATE TO OTHER SCREEN . (BUILD IN AND HAVE TO MODIFY IF YOU WANT TO USE OTHER WAY)
+- Python 3
+
+BELLOW ONLY IMPLIES IF YOU ARE USING BUTTON TO NAVIGATE TO OTHER SCREEN . (BUILD IN AND HAVE TO MODIFY IF YOU WANT TO USE OTHER WAY)
 IF YOU ARE NOT COMFORTABLE TO UPGRADE, HAVE TO AMMEND THE CODE ON FUNCTION def button_listener(). If you planned to change the function name do ammend the Thread function name also right bellow it.
 
 on user event toogle_user_event should be called by passing prespecified contant
@@ -31,13 +32,8 @@ on user event toogle_user_event should be called by passing prespecified contant
 - [`libgpiod v2`](https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git)
 > ⚠️ This project **requires `libgpiod v2`**, regardless of Raspberry Pi model.  
 > It's used for precise button event handling (including timeouts for double-click support).
-
-
-
-
-![RC circuit wiring](images/rc_circuit.png)
-
-
+> Have to make a RC circuit (dont pannic its simple)
+<img src="images/rc_circuit.png" width="400px">
 
 
 GETTING STARTED
