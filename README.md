@@ -21,19 +21,37 @@ A lightweight, customizable stats display built in Python using `luma.oled` and 
 
 - Python 3
 
-BELLOW ONLY IMPLIES IF YOU ARE USING BUTTON TO NAVIGATE TO OTHER SCREEN . (BUILD IN AND HAVE TO MODIFY IF YOU WANT TO USE OTHER WAY)
-IF YOU ARE NOT COMFORTABLE TO UPGRADE, HAVE TO AMMEND THE CODE ON FUNCTION def button_listener(). If you planned to change the function name do ammend the Thread function name also right bellow it.
-
-on user event toogle_user_event should be called by passing prespecified contant
--SINGLE_CLICK  --> switch to next [ screen / options ]
--LONG_PRESS  --> enter into selection page or select options
--DOUBLE_CLICK --> go back
-
 - [`libgpiod v2`](https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git)
-> ⚠️ This project **requires `libgpiod v2`**, regardless of Raspberry Pi model.  
+> ⚠️ This project **requires `libgpiod v2`**, regardless of Raspberry Pi model. 
+> The code have been build in and have to change if you want to use libgpiod v1 or any other ways to trigger it .. [How to change screen toggle function](#How-to-change-screen-toggle)
 > It's used for precise button event handling (including timeouts for double-click support).
-> Have to make a RC circuit (dont pannic its simple)
+
+## Hardware Requirements
+> i2c display ( sh1106 or other 1.3 inch oled display) .. please check luma.oled for supported i2c display.
+> 26 awg wires , dupont housing and pins
+> BELLOW ARE FOR BUTTON CLICK TOGGLE
+> Capasitor (0.1u)
+> Resistor (10k ohms)
+> Tactile Button 
+
+
+## How to change screen toggle
+> The function is located on main.py only.
+> Comment button_listener() and also the Thread bellow it 
+> Create a function
+> When you want to toggle change, call toogle_ever_event() . This function only takes predefined constants
+>  -SINGLE_CLICK  --> switch to next [ screen / options ]
+>  -LONG_PRESS  --> enter into selection page or select options
+>  -DOUBLE_CLICK --> go back
+> Copy paste the previously comment Thread and change the function name to new one (what you specified)
+
+## RC Circuit For Button toggle
 <img src="images/rc_circuit.png" width="400px">
+
+You could go with simpler circuit with just button and wires but this circuit ensures to eliminalte dirty signal due to button bouncing.
+
+
+
 
 
 GETTING STARTED
