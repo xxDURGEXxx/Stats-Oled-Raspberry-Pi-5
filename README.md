@@ -79,7 +79,7 @@ python main.py
 
 
 ## For End Users(System service setup)
-<pre>```bash
+```bash
 # 1. 📥 Install the Software
 sudo git clone https://github.com/xxDURGEXxx/Stats-Oled-Raspberry-Pi-5.git /usr/local/bin/stats_oled  
 cd /usr/local/bin/stats_oled  
@@ -102,16 +102,16 @@ ExecStart=/usr/local/bin/stats_oled/enviroment/bin/python /usr/local/bin/stats_o
 sudo systemctl daemon-reexec
 sudo systemctl enable oled-stats
 sudo systemctl start oled-stats
-</pre>
+```
 
 
 
 ## How to change screen toggle
-> The function is located on main.py only.
-> Comment button_listener() and also the Thread bellow it 
-> Create a function
-> When you want to toggle change, call toogle_ever_event() . This function only takes predefined constants
->  -SINGLE_CLICK  --> switch to next [ screen / options ]
->  -LONG_PRESS  --> enter into selection page or select options
->  -DOUBLE_CLICK --> go back
-> Copy paste the previously comment Thread and change the function name to new one (what you specified)
+> The function is located on main.py only.  
+> Comment button_listener() and also the Thread bellow it   
+> Create a function  
+> When you want to toggle change, call toogle_ever_event() . This function only takes predefined constants  
+>  -SINGLE_CLICK  --> switch to next [ screen / options ]  
+>  -LONG_PRESS  --> enter into selection page or select options  
+>  -DOUBLE_CLICK --> go back  
+> Copy paste the previously comment Thread and change the function name to new one (what you specified)  
