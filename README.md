@@ -10,7 +10,7 @@ A lightweight, customizable stats display built in Python using `luma.oled` and 
 - 🌐 Network info: IP address, mDNS, and more
 - 🖥️ Multiple screens: Home (main and default), Options (hardware selection), Network
 - 🔘 Button navigation (click / long press / double click)
-- 💤 Idle timeout with screen saver
+- 💤 Idle timeout with screen saver (prevent screen burning)
 - 🛠️ Configurable via `config.ini`
 - 🔄 Systemd service for auto-start
 - 👨‍💻 Developer-friendly structure with virtualenv support
@@ -41,9 +41,8 @@ BELLOW ARE FOR BUTTON CLICK TOGGLE
 ## RC Circuit For Button toggle
 <img src="images/rc_circuit.png" width="400px">
 
-You could go with simpler circuit with just button and wires but this circuit ensures to eliminalte dirty signal due to button bouncing.
-
-
+You could get around with simple button circuit but the signals wont be clean due to button bouncing issue.  
+To know about the button bouncing and rc circuit check on https://youtu.be/tI6B6BRKU5k?si=kr0qGCNcuo0YyN5I
 
 
 
@@ -52,9 +51,9 @@ You could go with simpler circuit with just button and wires but this circuit en
 ### 🔍 libgpiod V2
 
 CHECK VERSION
-<pre>```bash
+```bash
 gpiodetect --version
-</pre>
+```
 
 Upgrade libgpiod version
 - visit := https://libgpiod.readthedocs.io/en/latest/
@@ -62,7 +61,7 @@ Upgrade libgpiod version
 
 
 ## For Development
-<pre>```bash
+```bash
 git clone https://github.com/xxDURGEXxx/Stats-Oled-Raspberry-Pi-5.git
 
 cd Stats-Oled-Raspberry-Pi-5
@@ -76,7 +75,7 @@ pip install -r requirements.txt
 cp config/config.ini.example config/config.ini
 
 python main.py
-</pre>
+```
 
 
 ## For End Users(System service setup)
