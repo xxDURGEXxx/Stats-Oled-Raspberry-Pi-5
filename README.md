@@ -57,7 +57,7 @@ gpiodetect --version
 
 
 ## For Development
-
+<pre>```bash
 git clone https://github.com/xxDURGEXxx/Stats-Oled-Raspberry-Pi-5.git
 cd Stats-Oled-Raspberry-Pi-5
 python3 -m venv enviroment --system-site-packages
@@ -65,7 +65,7 @@ source enviroment/bin/activate
 pip install -r requirements.txt
 cp config/config.ini.example config/config.ini
 python main.py
-
+</pre>
 
 
 ## For End Users(System service setup)
