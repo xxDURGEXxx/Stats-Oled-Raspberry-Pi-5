@@ -1,0 +1,5 @@
+luma.core==2.4.2
+luma.oled==3.14.0
+pillow==11.2.1
+psutil==7.0.0
+pygame==2.6.1

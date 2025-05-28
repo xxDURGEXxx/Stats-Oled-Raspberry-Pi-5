@@ -1,0 +1,15 @@
+[general]
+display_contrast = 60
+
+[gpio_map]
+display_toggle = 4
+
+[timeouts]
+stats_update_interval = 1
+
+# 5 min
+set_back_home_timer = 300
+# 17 min
+home_idle_period =  840
+# 3 min
+screen_saver_period = 180
