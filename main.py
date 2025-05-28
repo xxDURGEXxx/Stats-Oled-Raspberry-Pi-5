@@ -23,7 +23,7 @@ serial = i2c(port=1, address=0x3C)
 device = sh1106(serial)
 device_size=device.size
 device.show()
-device.contrast(app_conf.getint("general","display_contrast")) 
+device.contrast(app_conf.getint("general","display_contrast",fallback=100)) 
 
 #===inti display template========
 stats_modules.init_modules(device_size)
@@ -32,7 +32,7 @@ TOTAL_MODULE=stats_modules.moduel_count
 
 #  ==== Gpios ========
 CHIP_PATH = "/dev/gpiochip0"
-DISPLAY_TOGGLE_BUTTON = app_conf.getint("gpio_map","display_toggle")  
+DISPLAY_TOGGLE_BUTTON = app_conf.getint("gpio_map","display_toggle",fallback=4)  
 # DISPLAY_POWER=4
 
 # ====== USER EVENTS =====
@@ -43,10 +43,10 @@ LONG_PRESS="long_press"
 # ==== TIMEOUTS =======
 MAIN_LOOP_INTERVAL = 0.2  # MAIN THREAD CLOCK
 
-STATS_UPDATE_INTERVAL = app_conf.getfloat("timeouts","stats_update_interval") # STATS UPDATE FRAME 
-SET_BACK_HOME_TIMER = app_conf.getint("timeouts","set_back_home_timer") # ON IDEL STATS RETURN TO HOME
-HOME_IDLE_PERIOD = app_conf.getint("timeouts","home_idle_period") # TIMEOUT TO SWITCH TO SCRENSAVER
-SCREEN_SAVER_PERIOD = app_conf.getint("timeouts","screen_saver_period") # TIMEOUT TO TURN OF SCRENSAVER
+STATS_UPDATE_INTERVAL = app_conf.getfloat("timeouts","stats_update_interval",fallback=1) # STATS UPDATE FRAME 
+SET_BACK_HOME_TIMER = app_conf.getint("timeouts","set_back_home_timer",fallback=300) # ON IDEL STATS RETURN TO HOME
+HOME_IDLE_PERIOD = app_conf.getint("timeouts","home_idle_period",fallback=840) # TIMEOUT TO SWITCH TO SCRENSAVER
+SCREEN_SAVER_PERIOD = app_conf.getint("timeouts","screen_saver_period",fallback=180) # TIMEOUT TO TURN OF SCRENSAVER
 
 #======= IGNOOT ( SYSTEM CALCULATED ) =====================================
 STATS_UPDATE_COUNTER = STATS_UPDATE_INTERVAL / MAIN_LOOP_INTERVAL

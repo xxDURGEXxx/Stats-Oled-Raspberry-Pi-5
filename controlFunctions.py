@@ -1,11 +1,19 @@
 import subprocess
 import socket
 import re
+import configparser
 
 BYTES_IN_GB = 1073741824
 SCREEN_MAX_Y = 64
 SCREEN_MAX_X = 128
-WLAN_INTERFACE='wlan1'
+
+app_conf = configparser.ConfigParser()
+config_path = "/etc/stats_oled/config.ini"
+if not os.path.exists(config_path):
+    config_path = "config/config.ini"  # Fallback for devs
+app_conf.read(config_path)
+
+WLAN_INTERFACE = app_conf.get("general","wlan",fallback="wlan0")
 
 def check_interface_status(timeout=1):
     ip_last = None

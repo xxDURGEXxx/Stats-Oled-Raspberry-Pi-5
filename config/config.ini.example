@@ -1,5 +1,6 @@
 [general]
 display_contrast = 60
+wlan = wlan0
 
 [gpio_map]
 display_toggle = 4
