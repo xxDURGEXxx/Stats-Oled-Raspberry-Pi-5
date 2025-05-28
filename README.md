@@ -20,10 +20,22 @@ A lightweight, customizable stats display built in Python using `luma.oled` and 
 ## 📦 Dependencies
 
 - Python 3.7+
-- [`libgpiod v2`](https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git)
+ONLY IMPLIES IF YOU ARE USING BUTTON TO NAVIGATE TO OTHER SCREEN . (BUILD IN AND HAVE TO MODIFY IF YOU WANT TO USE OTHER WAY)
+IF YOU ARE NOT COMFORTABLE TO UPGRADE, HAVE TO AMMEND THE CODE ON FUNCTION def button_listener(). If you planned to change the function name do ammend the Thread function name also right bellow it.
 
+on user event toogle_user_event should be called by passing prespecified contant
+-SINGLE_CLICK  --> switch to next [ screen / options ]
+-LONG_PRESS  --> enter into selection page or select options
+-DOUBLE_CLICK --> go back
+
+- [`libgpiod v2`](https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git)
 > ⚠️ This project **requires `libgpiod v2`**, regardless of Raspberry Pi model.  
 > It's used for precise button event handling (including timeouts for double-click support).
+
+
+
+
+![RC circuit wiring](images/rc_circuit.png)
 
 
 
@@ -54,4 +66,25 @@ python main.py
 
 For End Users(System sercice setup)
 
+1. 📥 Install the Software
 sudo git clone https://github.com/xxDURGEXxx/Stats-Oled-Raspberry-Pi-5.git /usr/local/bin/stats_oled
+cd /usr/local/bin/stats_oled
+python3 -m venv enviroment --system-site-packages
+source enviroment/bin/activate
+pip install -r requirements.txt
+deactivate
+
+2. ⚙️ Configure
+sudo mkdir -p /etc/stats_oled
+sudo cp config/config.ini.example /etc/stats_oled/config.ini
+sudo nano /etc/stats_oled/config.ini  (if there is any changes you want to make)
+
+3. 🔁 Create systemd Service
+sudo cp systemd/oled-stats.service /etc/systemd/system/oled-stats.service
+Make sure this matches your Python path (default):
+ExecStart=/usr/local/bin/stats_oled/enviroment/bin/python /usr/local/bin/stats_oled/main.py
+
+4.  Enable run on boot and start
+sudo systemctl daemon-reexec
+sudo systemctl enable oled-stats
+sudo systemctl start oled-stats
