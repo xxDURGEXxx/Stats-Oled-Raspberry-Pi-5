@@ -148,6 +148,16 @@ sudo systemctl start stats-oled
 ```
 
 
+## Uninstall
+```bash
+sudo systemctl stop stats-oled
+sudo systemctl disable stats-oled
+sudo rm /etc/systemd/system/stats-oled.service
+sudo systemctl daemon-reload
+
+sudo rm -r /etc/stats_oled
+sudo rm -r /usr/local/bin/stats_oled
+```
 
 ## How to change screen toggle
 
