@@ -22,7 +22,7 @@ A lightweight, customizable stats display built in Python using `luma.oled` and 
 <img src="images/IMG_3149.HEIC" width="300px"><img src="images/IMG_3150.HEIC" width="300px">
 <img src="images/IMG_3151.jpg" width="300px"><img src="images/IMG_3153.HEIC" width="300px">
 
-
+---
 
 ## 📦 Dependencies
 
