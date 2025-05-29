@@ -67,10 +67,10 @@ CHECK VERSION
 gpiodetect --version
 ```
 
-Upgrade libgpiod version
+Upgrade libgpiod version 2
 - visit := https://libgpiod.readthedocs.io/en/latest/
-- make sure to select version 2+
-
+- make sure to select version 2+  (libhpiod)
+- install python binging from the package (gpiod)
 
 ## For Development
 ```bash
