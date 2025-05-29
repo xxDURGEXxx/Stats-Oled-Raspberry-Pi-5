@@ -88,7 +88,38 @@ pip install -r requirements.txt
 cp config/config.ini.example config/config.ini
 
 python main.py
+
+# ---- FOR DEPLOYMENT AFTER MODIFICATION ----
+
+# 1. 📥 Move the folder to apropriate place
+sudo cp -r [path to the source folder] /usr/local/bin/stats_oled  
+cd /usr/local/bin/stats_oled  
+
+# remove enviroment file if exist form development 
+sudo rm -r enviroment
+
+python3 -m venv enviroment --system-site-packages  
+source enviroment/bin/activate
+pip install -r requirements.txt
+deactivate
+
+# 2. ⚙️ Configure
+sudo mkdir -p /etc/stats_oled
+
+# if you have made change to config file previously
+sudo cp config/config.ini /etc/stats_oled/config.ini
+
+# 3. 🔁 Create systemd Service
+sudo cp systemd/oled-stats.service /etc/systemd/system/oled-stats.service
+#Make sure this matches your Python path (default):
+#   -ExecStart=/usr/local/bin/stats_oled/enviroment/bin/python /usr/local/bin/stats_oled/main.py
+
+# 4.  Enable run on boot and start
+sudo systemctl daemon-reexec
+sudo systemctl enable oled-stats
+sudo systemctl start oled-stats
 ```
+
 
 
 ## For End Users(System service setup)
