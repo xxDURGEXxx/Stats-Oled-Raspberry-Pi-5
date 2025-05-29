@@ -1,0 +1,14 @@
+[Unit]
+Description=OLED Stats Display
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/stats_oled/environment/bin/python /usr/local/bin/stats_oled/main.py
+WorkingDirectory=/usr/local/bin/stats_oled/
+Environment="PYTHONUNBUFFERED=1"
+Restart=on-failure
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
