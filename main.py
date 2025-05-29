@@ -10,6 +10,7 @@ import stats_modules
 import sys
 from screen_saver_moduel.RoboEyes import screensaver
 import configparser
+import os
 
 app_conf = configparser.ConfigParser()
 config_path = "/etc/stats_oled/config.ini"

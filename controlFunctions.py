@@ -2,6 +2,7 @@ import subprocess
 import socket
 import re
 import configparser
+import os
 
 BYTES_IN_GB = 1073741824
 SCREEN_MAX_Y = 64

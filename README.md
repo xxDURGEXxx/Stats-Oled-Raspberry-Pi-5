@@ -79,7 +79,7 @@ git clone https://github.com/xxDURGEXxx/Stats-Oled-Raspberry-Pi-5.git
 
 cd Stats-Oled-Raspberry-Pi-5
 
-python3 -m venv enviroment --system-site-packages
+sudo python3 -m venv enviroment --system-site-packages
 
 source enviroment/bin/activate
 
@@ -98,7 +98,7 @@ cd /usr/local/bin/stats_oled
 # remove enviroment file if exist form development 
 sudo rm -r enviroment
 
-python3 -m venv enviroment --system-site-packages  
+sudo python3 -m venv enviroment --system-site-packages  
 source enviroment/bin/activate
 pip install -r requirements.txt
 deactivate
@@ -127,7 +127,7 @@ sudo systemctl start oled-stats
 # 1. 📥 Install the Software
 sudo git clone https://github.com/xxDURGEXxx/Stats-Oled-Raspberry-Pi-5.git /usr/local/bin/stats_oled  
 cd /usr/local/bin/stats_oled  
-python3 -m venv enviroment --system-site-packages  
+sudo python3 -m venv enviroment --system-site-packages  
 source enviroment/bin/activate
 pip install -r requirements.txt
 deactivate
