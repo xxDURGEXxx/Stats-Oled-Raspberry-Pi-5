@@ -58,7 +58,8 @@ To know about the button bouncing and rc circuit check on https://youtu.be/tI6B6
 This diagram represent full wiring setup. For Pi 5 can use 5 pin dupont housing for more clean and minimal setup.
 
 
-## GETTING STARTED
+
+# GETTING STARTED
 
 ### 🔍 libgpiod V2
 
