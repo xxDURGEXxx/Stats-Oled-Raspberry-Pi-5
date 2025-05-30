@@ -78,7 +78,7 @@ UPGRADE LIBGPIOD V2
 ## For End Users ( System service setup )
 
 > ⚠️ Only for stock setup using [button circuit](#Optimal-wiring-diagram) ( DEFAULT GPIO 4, can be altered in config.ini later in installation )  
-> If you dont prefer button circuit or want to preview without button circuit then follow [development](#For-Development-or-Preview-without-button-circuit) and [make your own screen toggle](#How-to-change-screen-toggle) 
+> If you dont prefer button circuit or want to preview and simulate button inputs using your keyboard without button circuit then follow [development](#For-Development-or-Preview-without-button-circuit) and [make your own screen toggle](#How-to-change-screen-toggle) 
 ```bash
 # 1. 📥 Install the Software
 sudo git clone https://github.com/xxDURGEXxx/Stats-Oled-Raspberry-Pi-5.git /usr/local/bin/stats_oled  
