@@ -70,8 +70,8 @@ gpiodetect --version
 
 UPGRADE LIBGPIOD V2
 - visit := https://libgpiod.readthedocs.io/en/latest/
-- make sure to select version 2+  (libhpiod)
-- install python binging from the package (gpiod)
+- make sure to select version 2+  (libgpiod)
+- install python binding from the package (gpiod)
 
 ## For Development
 ```bash
