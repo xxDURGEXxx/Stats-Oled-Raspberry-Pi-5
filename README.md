@@ -170,7 +170,7 @@ deactivate
 ```
 ---
 ### To make your own custom user screen toggle function [go to section](#How-to-change-screen-toggle)  
->⚠️ If you're going with a custom function, make sure you [disable the default listener](#disable-the-default-handler)
+>⚠️ If you're going with a custom function, make sure you [disable the default listener](#-steps-to-replace)
 
 ---
 ### Seting up for system service setup
