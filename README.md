@@ -33,29 +33,31 @@ A lightweight, customizable stats display built in Python using `luma.oled` and 
 >    
 > It's used for precise button event handling (including timeouts for double-click support).
 >  
-> DONT PANIC!! ⚠️ You can eleminate / skip  this by either changing the code to libgpiod V1 or if you chose some other way to toggle the screen. Trust me its very simple -> [How to change screen toggle function](#How-to-change-screen-toggle)
+> DONT PANIC!! ⚠️ You can eliminate / skip  this by either changing the code to libgpiod V1 or if you chose some other way to toggle the screen. Trust me, its very simple -> [How to change screen toggle function](#How-to-change-screen-toggle)
 
 
 ## Hardware Requirements
-- i2c display ( sh1106 or other 1.3 inch oled display) .. please check luma.oled for supported i2c display  
-- 26 awg wires , dupont housing and pins  
-BELLOW ARE FOR BUTTON CLICK TOGGLE  
-- Capasitor (0.1u)  
-- Resistor ( 10k ohms )  
+BASIC
+- I2C display (SH1106 or another 1.3-inch OLED display) — please check luma.oled for supported I2C displays 
+- 26 AWG wires, Dupont housing, and pins  
+
+BUTTON CLICK TOGGLE CIRCUIT 
+- Capacitor (0.1µF)  
+- Resistor (10kΩ) 
 - Tactile Button 
 
 
 ## RC Circuit For Button toggle
 <img src="images/rc_circuit.png" width="450px">
 
-You could get around with simple button circuit but the signals wont be clean due to button bouncing issue.  
-To know about the button bouncing and rc circuit check on https://youtu.be/tI6B6BRKU5k?si=kr0qGCNcuo0YyN5I
+-You can get by with a simple button circuit, but the signals won’t be clean due to button bounce issues.   
+-To know about the button bouncing and rc circuit check on https://youtu.be/tI6B6BRKU5k?si=kr0qGCNcuo0YyN5I
 
 
 ## Optimal wiring diagram
 <img src="images/pi_5_wiring.png" width="400px"><img src="images/IMG_3152.HEIC" width="300px">
 
-This diagram represent full wiring setup. For Pi 5 can use 5 pin dupont housing for more clean and minimal setup.
+This diagram represents the full wiring setup. For Pi 5, you can use a 5-pin Dupont housing for a cleaner, more minimal setup.
 
 
 
@@ -73,7 +75,36 @@ UPGRADE LIBGPIOD V2
 - make sure to select version 2+  (libgpiod)
 - install python binding from the package (gpiod)
 
-## For Development
+## For End Users ( System service setup )
+
+> ⚠️ Only for stock setup using [button circuit](#Optimal-wiring-diagram) ( DEFAULT GPIO 4, can be altered in config.ini later in installation )  
+> If you dont prefer button circuit or want to preview without button circuit then follow [development](#For-Development-or-Preview-without-button-circuit) and [make your own screen toggle](#How-to-change-screen-toggle) 
+```bash
+# 1. 📥 Install the Software
+sudo git clone https://github.com/xxDURGEXxx/Stats-Oled-Raspberry-Pi-5.git /usr/local/bin/stats_oled  
+cd /usr/local/bin/stats_oled  
+sudo python3 -m venv environment --system-site-packages  
+sudo environment/bin/pip install -r requirements.txt
+
+# 2. ⚙️ Configure
+sudo mkdir -p /etc/stats_oled
+sudo cp config/config.ini.example /etc/stats_oled/config.ini
+sudo nano /etc/stats_oled/config.ini  (if there are any changes you want to make)
+
+# 3. 🔁 Create systemd Service
+sudo cp systemd/stats-oled.service /etc/systemd/system/stats-oled.service
+#Make sure this matches your Python path (default):
+#   -ExecStart=/usr/local/bin/stats_oled/environment/bin/python /usr/local/bin/stats_oled/main.py
+
+# 4.  Enable run on boot and start
+sudo systemctl daemon-reload
+sudo systemctl enable stats-oled
+sudo systemctl start stats-oled
+```
+
+## For Development or Preview without button circuit
+
+### Installation
 ```bash
 git clone https://github.com/xxDURGEXxx/Stats-Oled-Raspberry-Pi-5.git
 
@@ -87,18 +118,71 @@ source environment/bin/activate
 
 pip install -r requirements.txt
 
-python main.py
-
-#to exit environment
 deactivate
+```
+---
+### Terminal Navigation ( For Preview Purposes Only — Not Recommended for systemd )
 
-# ---- FOR DEPLOYMENT AFTER MODIFICATION ----
+To simulate button inputs using your keyboard (for preview/testing only), enable the terminal input listener.
+
+🛠️ **To enable:**
+Uncomment the following sections in `main.py`:
+
+```python
+# Listener function
+def user_input_listener() :
+    print('\n')
+    print('OPTIONS AVAILABLE :  next  back  select')
+    while True:
+        act=input("-> ")
+
+        if act == 'next' : toggle_user_event(ACTION_NEXT)
+        elif act == 'back' : toggle_user_event(ACTION_BACK)
+        elif act == 'select' : toggle_user_event(ACTION_SELECT)
+        else : print("Invalid Input")
+
+# Creating thread
+user_input_listener_thread = threading.Thread(target=user_input_listener, daemon=True)
+
+# Starting the thread
+user_input_listener_thread.start() 
+```
+
+This will allow you to type :-  
+- next    → go to next screen  
+- back    → go to previous screen  
+- select  → select/enter
+
+>⚠️ Make sure to comment out the above sections if your done with preview because the thread might run unwantedly during systemd service.
+---
+
+### Execution for testing
+```bash
+#enter into environment
+source environment/bin/activate
+
+#execute and test
+python3 main.py
+# Ctrl + C to exit
+
+# to exit environment
+deactivate
+```
+---
+### To make your own custom user screen toggle function [go to section](#How-to-change-screen-toggle)  
+>⚠️ If you're going with a custom function, make sure you [disable the default listener](#Disable-the-default-handler)
+
+---
+### Seting up for system service setup
+
+```bash
+# ---- Deployment After Modifications ----
 
 # 1. 📥 Move the folder to apropriate place
 sudo cp -r [path to the source folder] /usr/local/bin/stats_oled  
 cd /usr/local/bin/stats_oled  
 
-# remove environment file if exist form development 
+# Remove the environment folder if it exists from development
 sudo rm -r environment
 
 sudo python3 -m venv environment --system-site-packages  
@@ -123,29 +207,7 @@ sudo systemctl start stats-oled
 
 
 
-## For End Users(System service setup)
-```bash
-# 1. 📥 Install the Software
-sudo git clone https://github.com/xxDURGEXxx/Stats-Oled-Raspberry-Pi-5.git /usr/local/bin/stats_oled  
-cd /usr/local/bin/stats_oled  
-sudo python3 -m venv environment --system-site-packages  
-sudo environment/bin/pip install -r requirements.txt
 
-# 2. ⚙️ Configure
-sudo mkdir -p /etc/stats_oled
-sudo cp config/config.ini.example /etc/stats_oled/config.ini
-sudo nano /etc/stats_oled/config.ini  (if there is any changes you want to make)
-
-# 3. 🔁 Create systemd Service
-sudo cp systemd/stats-oled.service /etc/systemd/system/stats-oled.service
-#Make sure this matches your Python path (default):
-#   -ExecStart=/usr/local/bin/stats_oled/environment/bin/python /usr/local/bin/stats_oled/main.py
-
-# 4.  Enable run on boot and start
-sudo systemctl daemon-reload
-sudo systemctl enable stats-oled
-sudo systemctl start stats-oled
-```
 
 
 ## Uninstall
@@ -177,15 +239,15 @@ In `main.py`, find the following:
    ```python
    def button_listener():
        ...
-    botton_listner_thread = threading.Thread(target=button_listener, daemon=True)
-    botton_listner_thread.start()
+    button_listener_thread = threading.Thread(target=button_listener, daemon=True)
+    button_listener_thread.start()
     ```
 2. Write your own input function  
    Create a custom function like:
    ```python
    def custom_toggle():
     # Example input logic here
-    toggle_user_event(CONSTANTS.SINGLE_CLICK)
+    toggle_user_event(ACTION_NEXT)
    ```
 
 3. Start the new input handler
@@ -196,9 +258,10 @@ In `main.py`, find the following:
 
 Supported Navigation Constants
 Use toggle_user_event() with any of the following:
-- SINGLE_CLICK → Next screen or option
-- LONG_PRESS → Enter/select
-- DOUBLE_CLICK → Go back
+- ACTION_NEXT → Next screen or option
+- ACTION_SELECT → Enter/select   
+Additionally, when viewing a stats screen (e.g., CPU), pressing ACTION_SELECT again will act as a shortcut to exit directly back to the selection menu — no need for multiple double-clicks.
+- ACTION_BACK → Go back
 
 
 ## 📜 License

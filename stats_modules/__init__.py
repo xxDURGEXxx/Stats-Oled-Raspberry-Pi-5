@@ -19,9 +19,9 @@ stats_modules=[
         "active":_hardware_select.getActive,
         "update":_hardware_select.update,
         "toggleActive":_hardware_select.toggleActive,
-        "single_click":_hardware_select.single_click,
-        "long_press": _hardware_select.long_press,
-        "double_click":_hardware_select.double_click
+        "action_next":_hardware_select.action_next,
+        "action_select": _hardware_select.action_select,
+        "action_back":_hardware_select.action_back
         } ,
     {
         "name":"network",

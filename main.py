@@ -37,9 +37,9 @@ DISPLAY_TOGGLE_BUTTON = app_conf.getint("gpio_map","display_toggle",fallback=4)
 # DISPLAY_POWER=4
 
 # ====== USER EVENTS =====
-SINGLE_CLICK="single_click"
-DOUBLE_CLICK="double_click"
-LONG_PRESS="long_press"
+ACTION_NEXT="action_next"
+ACTION_BACK="action_back"
+ACTION_SELECT="action_select"
 
 # ==== TIMEOUTS =======
 MAIN_LOOP_INTERVAL = 0.2  # MAIN THREAD CLOCK
@@ -155,19 +155,34 @@ def button_listener():
                 if edge_timeout == LISTERNER_TIMEOUT : edge_timeout=LONG_PRESS_TIMEOUT
                 if edge_timeout == DOUBLE_CLICK_TIMEOUT : 
                     edge_timeout=LISTERNER_TIMEOUT
-                    toggle_user_event(DOUBLE_CLICK)
+                    # DOUBLE CLICK
+                    toggle_user_event(ACTION_BACK)
 
             elif edge == "RISING_EDGE" :
                 if edge_timeout == LONG_PRESS_TIMEOUT : edge_timeout = DOUBLE_CLICK_TIMEOUT
 
         else:
-            if edge_timeout == LONG_PRESS_TIMEOUT : toggle_user_event(LONG_PRESS)
-            
-            elif edge_timeout == DOUBLE_CLICK_TIMEOUT : toggle_user_event(SINGLE_CLICK)
+            # LONG PRESS
+            if edge_timeout == LONG_PRESS_TIMEOUT : toggle_user_event(ACTION_SELECT)
+            # SINGLE CLICK
+            elif edge_timeout == DOUBLE_CLICK_TIMEOUT : toggle_user_event(ACTION_NEXT)
 
             edge_timeout = LISTERNER_TIMEOUT
 
-botton_listner_thread = threading.Thread(target=button_listener, daemon=True)
+button_listener_thread = threading.Thread(target=button_listener, daemon=True)
+
+# def user_input_listener() :
+#     print('\n')
+#     print('OPTIONS AVAILABLE :  next  back  select')
+#     while True:
+#         act=input("-> ")
+
+#         if act == 'next' : toggle_user_event(ACTION_NEXT)
+#         elif act == 'back' : toggle_user_event(ACTION_BACK)
+#         elif act == 'select' : toggle_user_event(ACTION_SELECT)
+#         else : print("Invalid Input")
+
+# user_input_listener_thread = threading.Thread(target=user_input_listener, daemon=True)
 
 def switchToScreensaver() :
     global screen_saver_mode,switchToHomeTimer,start_screen_saver,stop_screen_saver,screensaver_quick_exit
@@ -209,13 +224,13 @@ def screenUpdater():
     global cur_showing_index,cur_showing_disp,switchToHomeTimer,homeIdleTimer
     if user_event is not None:
         if not cur_showing_disp.get("active") or not cur_showing_disp["active"]():
-            if(user_event==SINGLE_CLICK):
+            if(user_event==ACTION_NEXT):
                 cur_showing_index=(cur_showing_index+1) % TOTAL_MODULE
                 cur_showing_disp = STAT_MODULES[cur_showing_index]
-            elif(user_event==DOUBLE_CLICK):
+            elif(user_event==ACTION_BACK):
                 cur_showing_index=(cur_showing_index-1) % TOTAL_MODULE
                 cur_showing_disp = STAT_MODULES[cur_showing_index]
-            elif(user_event==LONG_PRESS):
+            elif(user_event==ACTION_SELECT):
                 if cur_showing_disp.get("toggleActive") : cur_showing_disp["toggleActive"]()
                 else : return False
         else:
@@ -241,8 +256,8 @@ def screenUpdater():
 #===========run before start================
 
 homeIdleTimer.start()
-botton_listner_thread.start()
-
+button_listener_thread.start()
+# user_input_listener_thread.start()
 
 
 

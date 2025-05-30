@@ -51,7 +51,7 @@ def toggleActive():
     active=True
 
 # change opion or quit form moduel
-def single_click():
+def action_next():
     global active_module
     if active_module is not None:
         active_module=None
@@ -60,7 +60,7 @@ def single_click():
     selector_index=(selector_index+1)%GRID_SIZE
 
 # enter to moduel or skip to main from moduel
-def long_press():
+def action_select():
     global active_module
     if active_module is not None:
         toggleActive()
@@ -68,7 +68,7 @@ def long_press():
     active_module=HARDWARE_MODULES[GRID[selector_index]["module_name"]]
 
 # go to main or exit moduel
-def double_click():
+def action_back():
     global active_module
     if active_module is not None:
         active_module=None
